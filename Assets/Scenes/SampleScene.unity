@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 130376731}
   m_Layer: 0
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -487,7 +487,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraLocked: 0
-  target: {fileID: 830087249}
+  target: {fileID: 2033060279}
   offset: {x: 0, y: 0, z: 0}
   smoothFactor: 0.5
 --- !u!1 &1664973348
@@ -735,6 +735,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1628404c8ec77648b5f486ca9331b61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 10
+  maxJumps: 3
+  jumpForce: 12
+  gravityValue: -9.81
+  gravityMultiplier: 0.75
 --- !u!54 &2033060281
 Rigidbody:
   m_ObjectHideFlags: 0
