@@ -10,6 +10,7 @@ public class EnemyBehavior : MonoBehaviour
     public float gravityMultiplier = 0.5f;
     private bool isTrackingPlayer;
     public float trackingRange = 20.0f;
+    public float damage = 10.0f;
     void Start()
     {
         this.player = GameObject.FindWithTag("Player");
