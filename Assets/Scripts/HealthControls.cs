@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class HealthControls : MonoBehaviour
@@ -5,12 +6,15 @@ public class HealthControls : MonoBehaviour
     public float maxHealth = 100f;
     public float currentHealth;
     public bool healthDepleted;
+    public bool isPlayer;
+    private bool canTakeDamage;
+    public float IVFrameTime;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         currentHealth = maxHealth;
-
+        canTakeDamage = true;
     }
 
     void Update()
@@ -23,8 +27,13 @@ public class HealthControls : MonoBehaviour
 
     public void TakeDamage(float damageAmount)
     {
-        currentHealth -= damageAmount;
-        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); // Prevents health from going below zero or above max
+        if (canTakeDamage)
+        {
+            canTakeDamage = false;
+            currentHealth -= damageAmount;
+            currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); // Prevents health from going below zero or above max
+            StartCoroutine(IVFrameTimer());
+        }
     }
 
     public void Heal(float healAmount)
@@ -37,7 +46,13 @@ public class HealthControls : MonoBehaviour
     {
         return this.healthDepleted;
     }
-    
+
+    IEnumerator IVFrameTimer()
+    {
+        yield return new WaitForSeconds(IVFrameTime);
+
+        canTakeDamage = true;
+    }
 
     //void UpdateHealthBar()
     //{

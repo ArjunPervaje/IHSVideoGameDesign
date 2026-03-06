@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
@@ -14,12 +15,18 @@ public class PlayerController : MonoBehaviour
     private HealthControls healthController;
     private bool isDead;
 
+    public float attackCooldown = 0.5f;
+    public GameObject weaponHitbox;
+    private bool canAttack = true;
+
     void Start()
     {
         this.playerRb = GetComponent<Rigidbody>();
         this.currentJumpsAvailable = this.maxJumps;
         this.playerRb.useGravity = false;
         this.healthController = GetComponent<HealthControls>();
+
+   
     }
 
     void Update()
@@ -39,6 +46,13 @@ public class PlayerController : MonoBehaviour
             }
             this.playerRb.AddForce(gravityDirection * gravityMultiplier, ForceMode.Acceleration);
         }
+
+        //attack
+        if (Input.GetMouseButtonDown(0) && canAttack)
+        {
+
+            StartCoroutine(DoAttack());
+        }
     }
 
     void OnCollisionEnter(Collision collision)
@@ -49,5 +63,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    IEnumerator DoAttack()
+    {
+        canAttack = false;
+        weaponHitbox.gameObject.SetActive(true);
+        yield return new WaitForSeconds(attackCooldown);
+        canAttack = true;
+        weaponHitbox.gameObject.SetActive(false);
+    }
 
 }
