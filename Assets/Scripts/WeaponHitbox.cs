@@ -3,12 +3,17 @@ using UnityEngine;
 public class WeaponHitbox : MonoBehaviour
 {
     public int damage = 10;
-    public Transform player;
-    public Vector3 hitboxRelative;
+    public GameObject player;
+    private PlayerController playerController;
+    private Vector3 hitboxRelative = new Vector3(0.6f, 0 ,0);
+    private bool 
+
+    private bool didChangeDirection = false;
 
     void start ()
     {
         gameObject.SetActive(false);
+        playerController = player.getComponent<PlayerController>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -26,7 +31,11 @@ public class WeaponHitbox : MonoBehaviour
 
     void update ()
     {
-        Vector3 hitboxPosition = player.position + hitboxRelative;
-        transform.position = hitboxPosition;
+        bool prevDirection = 
+        transform.position = hitboxRelative;
+        if ()
+        {
+
+        }
     }
 }

@@ -19,13 +19,14 @@ public class PlayerController : MonoBehaviour
     public GameObject weaponHitbox;
     private bool canAttack = true;
 
+    private bool isFacingRight;
     void Start()
     {
         this.playerRb = GetComponent<Rigidbody>();
         this.currentJumpsAvailable = this.maxJumps;
         this.playerRb.useGravity = false;
         this.healthController = GetComponent<HealthControls>();
-
+        this.isFacingRight = true;
    
     }
 
@@ -44,7 +45,20 @@ public class PlayerController : MonoBehaviour
                 currentJumpsAvailable--;
                 this.playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             }
+            
             this.playerRb.AddForce(gravityDirection * gravityMultiplier, ForceMode.Acceleration);
+            
+            if (horizontalInput != 0)
+            {
+                if (horizontalInput > 0)
+                {
+                    this.isFacingRight = true;
+                }
+                else if (horizontalInput < 0)
+                {
+                    this.isFacingRight = false;
+                }
+            }
         }
 
         //attack
@@ -70,6 +84,11 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(attackCooldown);
         canAttack = true;
         weaponHitbox.gameObject.SetActive(false);
+    }
+
+    public bool getIsFacingRight()
+    {
+        return this.isFacingRight;
     }
 
 }

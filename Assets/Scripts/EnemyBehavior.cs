@@ -11,10 +11,12 @@ public class EnemyBehavior : MonoBehaviour
     private bool isTrackingPlayer;
     public float trackingRange = 20.0f;
     public float damage = 10.0f;
+    private HealthControls health;
     void Start()
     {
         this.player = GameObject.FindWithTag("Player");
         this.rb = GetComponent<Rigidbody>();
+        this.health = GetComponent<HealthControls>();
     }
 
     void Update()
@@ -30,6 +32,11 @@ public class EnemyBehavior : MonoBehaviour
         else if (transform.position.x > player.transform.position.x && this.isTrackingPlayer)
         {
             transform.Translate(Vector3.right * -speed * Time.deltaTime);
+        }
+
+        if (this.health.getIsHealthDepleted())
+        {
+            this.gameObject.SetActive(false);
         }
     }
 }

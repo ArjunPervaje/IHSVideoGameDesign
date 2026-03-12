@@ -434,7 +434,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   player: {fileID: 2033060279}
-  hitboxRelative: {x: 0, y: 0, z: 0}
+  hitboxRelative: {x: 1, y: 0, z: 0}
 --- !u!4 &591878270
 Transform:
   m_ObjectHideFlags: 0
@@ -444,7 +444,7 @@ Transform:
   m_GameObject: {fileID: 591878268}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.6690097, y: 14.391269, z: -14.444149}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -978,6 +978,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d63e248bb1ed194c995533edfd79d6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
 --- !u!54 &1680301678
 Rigidbody:
   m_ObjectHideFlags: 0
