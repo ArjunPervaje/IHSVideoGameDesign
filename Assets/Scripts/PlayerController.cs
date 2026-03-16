@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
     public GameObject weaponHitbox;
     private bool canAttack = true;
 
+    public float multiplier = 1.0f;
+
     private bool isFacingRight;
     void Start()
     {
@@ -89,6 +91,21 @@ public class PlayerController : MonoBehaviour
     public bool getIsFacingRight()
     {
         return this.isFacingRight;
+    }
+
+    public void changeAttack(float amount)
+    {
+        multiplier *= amount;
+    }
+
+    public void changeJump(int amount)
+    {
+        maxJumps += amount;
+    }
+
+    public void changeJumpFore(float amount)
+    {
+        jumpForce *= amount;
     }
 
 }

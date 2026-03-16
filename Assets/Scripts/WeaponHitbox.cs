@@ -6,14 +6,14 @@ public class WeaponHitbox : MonoBehaviour
     public GameObject player;
     private PlayerController playerController;
     private Vector3 hitboxRelative = new Vector3(0.6f, 0 ,0);
-    private bool 
+    
 
     private bool didChangeDirection = false;
 
     void start ()
     {
         gameObject.SetActive(false);
-        playerController = player.getComponent<PlayerController>();
+        playerController = player.GetComponent<PlayerController>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -24,18 +24,20 @@ public class WeaponHitbox : MonoBehaviour
 
             if (enemy != null)
             {
-                enemy.TakeDamage(damage);
+                enemy.TakeDamage(damage * playerController.multiplier);
             }
         }
     }
 
     void update ()
     {
-        bool prevDirection = 
+        this.didChangeDirection = false;
+        bool prevDirection = playerController.getIsFacingRight(); 
         transform.position = hitboxRelative;
-        if ()
-        {
+        //if ()
+        //{
 
-        }
+        //}
     }
+
 }
