@@ -17,6 +17,7 @@ public class WeaponHitbox : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
+            Debug.Log("LAKJSJKLJKLAFSJKLLJKASDF");
             HealthControls enemy = other.GetComponent<HealthControls>();
 
             if (enemy != null)
