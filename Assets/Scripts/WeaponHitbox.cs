@@ -6,9 +6,6 @@ public class WeaponHitbox : MonoBehaviour
     public GameObject player;
     private PlayerController playerController;
     private Vector3 hitboxRelative = new Vector3(0.6f, 0 ,0);
-    
-
-    private bool didChangeDirection = false;
 
     void start ()
     {
@@ -31,13 +28,7 @@ public class WeaponHitbox : MonoBehaviour
 
     void update ()
     {
-        this.didChangeDirection = false;
-        bool prevDirection = playerController.getIsFacingRight(); 
         transform.position = hitboxRelative;
-        //if ()
-        //{
-
-        //}
     }
 
 }

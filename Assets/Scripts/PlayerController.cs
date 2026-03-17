@@ -28,7 +28,6 @@ public class PlayerController : MonoBehaviour
         this.currentJumpsAvailable = this.maxJumps;
         this.playerRb.useGravity = false;
         this.healthController = GetComponent<HealthControls>();
-        this.isFacingRight = true;
    
     }
 
@@ -39,7 +38,7 @@ public class PlayerController : MonoBehaviour
         {
             this.gravityDirection = new Vector3(0, this.gravityValue, 0);
             this.horizontalInput = Input.GetAxis("Horizontal");
-            Vector3 movement = new Vector3(horizontalInput, 0, 0);
+            Vector3 movement = new Vector3(Mathf.Abs(horizontalInput), 0, 0);
             transform.Translate(movement * speed * Time.deltaTime);
             if (Input.GetKeyDown(KeyCode.Space) && this.currentJumpsAvailable > 0)
             {
@@ -50,16 +49,13 @@ public class PlayerController : MonoBehaviour
             
             this.playerRb.AddForce(gravityDirection * gravityMultiplier, ForceMode.Acceleration);
             
-            if (horizontalInput != 0)
+            if (this.horizontalInput > 0)
             {
-                if (horizontalInput > 0)
-                {
-                    this.isFacingRight = true;
-                }
-                else if (horizontalInput < 0)
-                {
-                    this.isFacingRight = false;
-                }
+                transform.eulerAngles = new Vector3(0, 0, 0);
+            }
+            else if (this.horizontalInput < 0)
+            {
+                transform.eulerAngles = new Vector3(0, 180, 0);
             }
         }
 
@@ -86,11 +82,6 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(attackCooldown);
         canAttack = true;
         weaponHitbox.gameObject.SetActive(false);
-    }
-
-    public bool getIsFacingRight()
-    {
-        return this.isFacingRight;
     }
 
     public void changeAttack(float amount)
