@@ -35,6 +35,10 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         this.isDead = healthController.getIsHealthDepleted();
+        if (this.isDead)
+        {
+            this.gameObject.SetActive(false);
+        }
         if (!this.isDead)
         {
             this.gravityDirection = new Vector3(0, this.gravityValue, 0);

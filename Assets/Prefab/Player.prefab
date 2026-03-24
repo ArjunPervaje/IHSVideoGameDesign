@@ -166,6 +166,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8016391662928443627}
   - component: {fileID: 6357799760087922413}
+  - component: {fileID: 2122909620195362121}
   m_Layer: 0
   m_Name: FeetHitbox
   m_TagString: Untagged
@@ -209,6 +210,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.1, y: 0.1, z: 0.1}
   m_Center: {x: 0, y: -0.945, z: 0}
+--- !u!114 &2122909620195362121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7220460288346036687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 475a4b31ee8738a4fae6e383d787e864, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8567212375676402633
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,6 +354,7 @@ MonoBehaviour:
   jumpForce: 15
   gravityValue: -9.81
   gravityMultiplier: 0.5
+  footHitbox: {fileID: 7220460288346036687}
   attackCooldown: 0.5
   weaponHitbox: {fileID: 2079909173612765230}
   multiplier: 1
