@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public float gravityMultiplier = 0.5f;
     private HealthControls healthController;
     private bool isDead;
+    public GameObject footHitbox;
 
     public float attackCooldown = 0.5f;
     public GameObject weaponHitbox;
@@ -56,6 +57,11 @@ public class PlayerController : MonoBehaviour
             else if (this.horizontalInput < 0)
             {
                 transform.eulerAngles = new Vector3(0, 180, 0);
+            }
+
+            if (footHitbox.GetComponent<FootHitboxScript>().isTouchingGround())
+            {
+                this.currentJumpsAvailable = this.maxJumps;
             }
         }
 
