@@ -12,6 +12,7 @@ public class EnemyBehavior : MonoBehaviour
     public float trackingRange = 20.0f;
     public float damage = 10.0f;
     private HealthControls health;
+    public float enemyMultiplier = 1f;
     void Start()
     {
         this.player = GameObject.FindWithTag("Player");
@@ -38,5 +39,25 @@ public class EnemyBehavior : MonoBehaviour
         {
             this.gameObject.SetActive(false);
         }
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            HealthControls playerHealth = other.GetComponent<HealthControls>();
+
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(damage * enemyGetDamageMultiplier());
+            }
+        }
+
+    }
+
+    public float enemyGetDamageMultiplier()
+    {
+        return enemyMultiplier;
     }
 }

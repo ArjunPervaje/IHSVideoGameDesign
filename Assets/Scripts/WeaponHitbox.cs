@@ -6,7 +6,6 @@ public class WeaponHitbox : MonoBehaviour
     public bool isPlayer;
     public GameObject owner;
     private Vector3 hitboxRelative = new Vector3(0.6f, 0 ,0);
-    private float multiplier = 1;
 
     void Start ()
     {
