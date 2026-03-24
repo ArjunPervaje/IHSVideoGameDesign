@@ -3,33 +3,32 @@ using UnityEngine;
 public class WeaponHitbox : MonoBehaviour
 {
     public int damage = 10;
-    public GameObject player;
-    private PlayerController playerController;
+    public bool isPlayer;
+    public GameObject owner;
     private Vector3 hitboxRelative = new Vector3(0.6f, 0 ,0);
+    private float multiplier = 1;
 
-    void start ()
+    void Start ()
     {
         gameObject.SetActive(false);
-        playerController = player.GetComponent<PlayerController>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Enemy"))
         {
-            Debug.Log("LAKJSJKLJKLAFSJKLLJKASDF");
             HealthControls enemy = other.GetComponent<HealthControls>();
 
             if (enemy != null)
             {
-                enemy.TakeDamage(damage * playerController.multiplier);
+                enemy.TakeDamage(damage * this.owner.GetComponent<PlayerController>().getDamageMultiplier());
             }
         }
     }
 
-    void update ()
+    void Update ()
     {
-        transform.position = hitboxRelative;
+        
     }
 
 }

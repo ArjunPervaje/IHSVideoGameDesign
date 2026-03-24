@@ -99,4 +99,9 @@ public class PlayerController : MonoBehaviour
         jumpForce *= amount;
     }
 
+    public float getDamageMultiplier()
+    {
+        return multiplier;
+    }
+
 }
