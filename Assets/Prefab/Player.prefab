@@ -355,7 +355,7 @@ MonoBehaviour:
   gravityValue: -9.81
   gravityMultiplier: 0.5
   footHitbox: {fileID: 7220460288346036687}
-  attackCooldown: 0.5
+  attackCooldown: 0.25
   weaponHitbox: {fileID: 2079909173612765230}
   multiplier: 1
 --- !u!114 &3764629758938925435
@@ -374,7 +374,7 @@ MonoBehaviour:
   currentHealth: 0
   healthDepleted: 0
   isPlayer: 1
-  IVFrameTime: 0
+  IVFrameTime: 2
 --- !u!54 &1165777266711756562
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     private bool isDead;
     public GameObject footHitbox;
 
-    public float attackCooldown = 0.5f;
+    public float attackCooldown = 0.25f;
     public GameObject weaponHitbox;
     private bool canAttack = true;
 
