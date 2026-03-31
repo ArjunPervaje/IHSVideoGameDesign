@@ -12,11 +12,6 @@ public class ShopMechanism : MonoBehaviour
     public string playerTag = "Player";
     public int playerGold = 100;
 
-    [Header("UI Colors")]
-    public Color panelColor = new Color(0.1f, 0.1f, 0.15f, 0.95f);
-    public Color buttonColor = new Color(0.2f, 0.6f, 0.3f, 1f);
-    public Color cantAffordColor = new Color(0.5f, 0.5f, 0.5f, 1f);
-
     // Private UI references (auto-created at runtime)
     private GameObject shopPanel;
     private TMP_Text goldText;
@@ -26,7 +21,6 @@ public class ShopMechanism : MonoBehaviour
 
     private void Start()
     {
-        BuildShopUI();
         shopPanel.SetActive(false);
     }
 
@@ -36,7 +30,7 @@ public class ShopMechanism : MonoBehaviour
             CloseShop();
     }
 
-    // ??? Trigger Detection ???????????????????????????????????????????????????
+    // Trigger Detection
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -50,7 +44,7 @@ public class ShopMechanism : MonoBehaviour
             CloseShop();
     }
 
-    // ??? Shop Logic ??????????????????????????????????????????????????????????
+    // Shop Logic
 
     private void OpenShop()
     {
@@ -67,8 +61,9 @@ public class ShopMechanism : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    private void TryPurchase(ShopItemData item, GameObject buttonObj)
+    private void TryPurchase(ShopUpgrades item, GameObject buttonObj)
     {
+
         if (playerGold >= item.cost)
         {
             playerGold -= item.cost;
@@ -88,6 +83,11 @@ public class ShopMechanism : MonoBehaviour
     {
         if (goldText != null)
             goldText.text = $"Gold: {playerGold}";
+    }
+
+    private void RefreshButtons()
+    {
+        // Implement button state refresh here
     }
 
 }
