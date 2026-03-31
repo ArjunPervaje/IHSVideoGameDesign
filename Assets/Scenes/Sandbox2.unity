@@ -185,6 +185,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5303285543140747737, guid: 174ac66e013f30d40b3cce35988a5671, type: 3}
   m_PrefabInstance: {fileID: 161760864}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &421532894 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 305695129767002228, guid: afc0e32bcd8c8fb479e6361d8c852d11, type: 3}
+  m_PrefabInstance: {fileID: 2124020246}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &515351214
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -656,7 +661,7 @@ Transform:
   m_GameObject: {fileID: 1413843627}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2}
+  m_LocalPosition: {x: 0, y: 0, z: 3}
   m_LocalScale: {x: 25, y: 25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -820,7 +825,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5303285543140747737, guid: 174ac66e013f30d40b3cce35988a5671, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.3800001
+      value: 1.39
       objectReference: {fileID: 0}
     - target: {fileID: 5303285543140747737, guid: 174ac66e013f30d40b3cce35988a5671, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1177,6 +1182,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7646365259745879342, guid: fd673ba7f6b81c145963189f6d4e209e, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 421532894}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1229,6 +1238,10 @@ PrefabInstance:
     - target: {fileID: 305695129767002228, guid: afc0e32bcd8c8fb479e6361d8c852d11, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2516064143737904541, guid: afc0e32bcd8c8fb479e6361d8c852d11, type: 3}
+      propertyPath: jumpForce
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8567212375676402633, guid: afc0e32bcd8c8fb479e6361d8c852d11, type: 3}
       propertyPath: m_Name
