@@ -54,6 +54,11 @@ public class HealthControls : MonoBehaviour
         canTakeDamage = true;
     }
 
+    public float getHealthPercentage()
+    {
+        return currentHealth / maxHealth;
+    }
+
     //void UpdateHealthBar()
     //{
     //    healthBarFill.fillAmount = currentHealth / maxHealth;
