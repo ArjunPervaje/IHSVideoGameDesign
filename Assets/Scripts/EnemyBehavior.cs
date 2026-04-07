@@ -13,6 +13,7 @@ public class EnemyBehavior : MonoBehaviour
     public float damage = 10.0f;
     private HealthControls health;
     public float enemyMultiplier = 1f;
+    public GameObject parent;
     void Start()
     {
         this.player = GameObject.FindWithTag("Player");
@@ -37,7 +38,7 @@ public class EnemyBehavior : MonoBehaviour
 
         if (this.health.getIsHealthDepleted())
         {
-            this.gameObject.SetActive(false);
+            Destroy(parent);
         }
 
     }
@@ -59,5 +60,13 @@ public class EnemyBehavior : MonoBehaviour
     public float enemyGetDamageMultiplier()
     {
         return enemyMultiplier;
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Physics.IgnoreCollision(gameObject.GetComponent<Collider>(), collision.gameObject.GetComponent<Collider>(), true);
+        }
     }
 }

@@ -23,6 +23,9 @@ public class PlayerController : MonoBehaviour
     public float multiplier = 1.0f;
 
     private bool isFacingRight;
+
+    private float timeSinceLastAttack;
+    private float attackCooldownPercentage;
     void Start()
     {
         this.playerRb = GetComponent<Rigidbody>();
@@ -74,7 +77,10 @@ public class PlayerController : MonoBehaviour
         {
 
             StartCoroutine(DoAttack());
+            timeSinceLastAttack = 0.0f;
         }
+        timeSinceLastAttack += Time.deltaTime;
+        attackCooldownPercentage = timeSinceLastAttack / attackCooldown;
     }
 
     void OnCollisionEnter(Collision collision)

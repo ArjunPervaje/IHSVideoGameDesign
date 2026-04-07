@@ -21,10 +21,10 @@ public class HealthBarControls : MonoBehaviour
         Vector3 desiredPosition = attatchedObject.transform.position + offset;
         greenBar.transform.localScale = new Vector3(healthController.getHealthPercentage() * 2f, 0.5f, 1f);
         transform.position = desiredPosition;
-        if (healthController.getIsHealthDepleted())
-        {
-            this.gameObject.SetActive(false);
-        }
+        //if (healthController.getIsHealthDepleted())
+        //{
+        //    Destroy(gameObject);
+        //}
         if (healthController.getHealthPercentage() == 1f)
         {
             greenBar.GetComponent<MeshRenderer>().enabled = false;
