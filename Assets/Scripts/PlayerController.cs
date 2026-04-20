@@ -81,6 +81,8 @@ public class PlayerController : MonoBehaviour
         }
         timeSinceLastAttack += Time.deltaTime;
         attackCooldownPercentage = timeSinceLastAttack / attackCooldown;
+        attackCooldownPercentage = Mathf.Clamp(attackCooldownPercentage, 0f, 1f);
+        Debug.Log(attackCooldownPercentage);
     }
 
     void OnCollisionEnter(Collision collision)
@@ -110,7 +112,7 @@ public class PlayerController : MonoBehaviour
         maxJumps += amount;
     }
 
-    public void changeJumpFore(float amount)
+    public void changeJumpForce(float amount)
     {
         jumpForce *= amount;
     }
@@ -118,6 +120,11 @@ public class PlayerController : MonoBehaviour
     public float getDamageMultiplier()
     {
         return multiplier;
+    }
+
+    public float getAttackCooldownPercentage()
+    {
+        return attackCooldownPercentage;
     }
 
 }

@@ -59,6 +59,11 @@ public class HealthControls : MonoBehaviour
         return currentHealth / maxHealth;
     }
 
+    public float getCurrentHealth()
+    {
+        return currentHealth;
+    }
+
     //void UpdateHealthBar()
     //{
     //    healthBarFill.fillAmount = currentHealth / maxHealth;
