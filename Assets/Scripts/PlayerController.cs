@@ -17,7 +17,9 @@ public class PlayerController : MonoBehaviour
     public GameObject footHitbox;
 
     public float attackCooldown = 0.25f;
-    public GameObject weaponHitbox;
+    public GameObject sideWeaponHitbox;
+    public GameObject upWeaponHitbox;
+    public GameObject downWeaponHitbox;
     private bool canAttack = true;
 
     public float multiplier = 1.0f;
@@ -75,14 +77,25 @@ public class PlayerController : MonoBehaviour
         //attack
         if (Input.GetMouseButtonDown(0) && canAttack)
         {
+            if (Input.GetKey(KeyCode.W))
+            {
+                StartCoroutine(DoUpAttack());
+            }
+            else if (Input.GetKey(KeyCode.S))
+            {
+                StartCoroutine(DoDownAttack());
+            }
+            else
+            {
+                StartCoroutine(DoSideAttack());
+            }
 
-            StartCoroutine(DoAttack());
             timeSinceLastAttack = 0.0f;
         }
         timeSinceLastAttack += Time.deltaTime;
         attackCooldownPercentage = timeSinceLastAttack / attackCooldown;
         attackCooldownPercentage = Mathf.Clamp(attackCooldownPercentage, 0f, 1f);
-        Debug.Log(attackCooldownPercentage);
+        //Debug.Log(attackCooldownPercentage);
     }
 
     void OnCollisionEnter(Collision collision)
@@ -93,13 +106,31 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    IEnumerator DoAttack()
+    IEnumerator DoSideAttack()
     {
         canAttack = false;
-        weaponHitbox.gameObject.SetActive(true);
+        sideWeaponHitbox.gameObject.SetActive(true);
         yield return new WaitForSeconds(attackCooldown);
         canAttack = true;
-        weaponHitbox.gameObject.SetActive(false);
+        sideWeaponHitbox.gameObject.SetActive(false);
+    }
+
+    IEnumerator DoUpAttack()
+    {
+        canAttack = false;
+        upWeaponHitbox.gameObject.SetActive(true);
+        yield return new WaitForSeconds(attackCooldown);
+        canAttack = true;
+        upWeaponHitbox.gameObject.SetActive(false);
+    }
+
+    IEnumerator DoDownAttack()
+    {
+        canAttack = false;
+        downWeaponHitbox.gameObject.SetActive(true);
+        yield return new WaitForSeconds(attackCooldown);
+        canAttack = true;
+        downWeaponHitbox.gameObject.SetActive(false);
     }
 
     public void changeAttack(float amount)
