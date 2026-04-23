@@ -8,10 +8,12 @@ public class GameManagerScript : MonoBehaviour
     public GameObject player;
     private bool DebugPanelOpen;
     public GameObject DebugPanel;
+    private int stage;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        DebugPanelOpen = false;
+        this.DebugPanelOpen = false;
+        this.stage = 1;
     }
 
     // Update is called once per frame
@@ -45,6 +47,16 @@ public class GameManagerScript : MonoBehaviour
             }
         }
 
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            stage++;
+        }
+
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            stage--;
+        }
+
         //if (Input.GetKeyDown(KeyCode.P))
         //{
         //    Debug.Log("Teleported Player At Cursor");
@@ -52,5 +64,11 @@ public class GameManagerScript : MonoBehaviour
         //    mousePos.z = 0f;
         //    player.transform.position = mousePos;
         //}
+
+    }
+
+    public int getStage()
+    {
+        return stage;
     }
 }

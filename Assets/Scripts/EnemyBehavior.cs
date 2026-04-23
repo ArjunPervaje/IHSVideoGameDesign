@@ -10,15 +10,21 @@ public class EnemyBehavior : MonoBehaviour
     public float gravityMultiplier = 0.5f;
     private bool isTrackingPlayer;
     public float trackingRange = 20.0f;
-    public float damage = 10.0f;
+    private float baseDamage = 10.0f;
+    public float damage;
     private HealthControls health;
     public float enemyMultiplier = 1f;
     public GameObject parent;
+    private GameManagerScript gameManager;
+    private int stage;
+
     void Start()
     {
         this.player = GameObject.FindWithTag("Player");
+        this.gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManagerScript>();
         this.rb = GetComponent<Rigidbody>();
         this.health = GetComponent<HealthControls>();
+        this.damage = this.baseDamage;
     }
 
     void Update()
@@ -26,6 +32,10 @@ public class EnemyBehavior : MonoBehaviour
         this.gravityDirection = new Vector3(0, this.gravityValue, 0);
         this.rb.AddForce(gravityDirection * gravityMultiplier, ForceMode.Acceleration);
         this.isTrackingPlayer = Mathf.Abs(transform.position.x - player.transform.position.x) < this.trackingRange;
+
+        this.stage = gameManager.getStage();
+
+        this.damage = this.baseDamage * (1 + (stage / 10));
 
         if (transform.position.x < player.transform.position.x && this.isTrackingPlayer)
         {
