@@ -14,6 +14,7 @@ public class EnemyBehavior : MonoBehaviour
     private HealthControls health;
     public float enemyMultiplier = 1f;
     public GameObject parent;
+
     void Start()
     {
         this.player = GameObject.FindWithTag("Player");
