@@ -14,9 +14,9 @@ public class CombatButtonManager : MonoBehaviour
         
     }
 
-    public void OnButtonClick()
-    {
-        Debug.Log("Button was clicked!");
-        PlayerController.changeAttack(1.5);
-    }
+    //public void OnButtonClick()
+    //{
+    //    Debug.Log("Button was clicked!");
+    //    PlayerController.changeAttack(1.5f);
+    //}
 }
