@@ -9,10 +9,14 @@ public class HealthControls : MonoBehaviour
     public bool isPlayer;
     private bool canTakeDamage;
     public float IVFrameTime;
+    private int stage;
+    private GameManagerScript gameManager;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        this.gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManagerScript>();
+        maxHealth = maxHealth += 10 * stage;
         currentHealth = maxHealth;
         canTakeDamage = true;
     }
@@ -23,6 +27,8 @@ public class HealthControls : MonoBehaviour
         {
             healthDepleted = true;
         }
+
+
     }
 
     public void TakeDamage(float damageAmount)

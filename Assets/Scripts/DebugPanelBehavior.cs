@@ -7,10 +7,12 @@ public class DebugPanelBehavior : MonoBehaviour
     public GameObject player;
     private PlayerController playerInfo;
     private HealthControls playerHealthInfo;
+    private GameManagerScript gameManager;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManagerScript>();
         playerInfo = player.GetComponent<PlayerController>();
         playerHealthInfo = player.GetComponent<HealthControls>();
     }
@@ -20,6 +22,7 @@ public class DebugPanelBehavior : MonoBehaviour
     {
         DebugPanel.text = "Player Melee Attack CD%: " + playerInfo.getAttackCooldownPercentage() +
                         "\nPlayer Health%: " + playerHealthInfo.getHealthPercentage() * 100 +
-                        "\nPlayer Health: " + playerHealthInfo.getCurrentHealth();
+                        "\nPlayer Health: " + playerHealthInfo.getCurrentHealth() +
+                        "\nStage: " + gameManager.getStage();
     }
 }
