@@ -99,39 +99,39 @@ public class ShopUpgrades : ScriptableObject
     //    }
     //}
 
-    public Button combatUpgrades;
-    public Button movementUpgrades;
-    public Button passiveUpgrades;
+    //public Button combatUpgrades;
+    //public Button movementUpgrades;
+    //public Button passiveUpgrades;
 
-    void start()
-    {
-        this.player = GameObject.FindWithTag("Player");
+    //void start()
+    //{
+    //    this.player = GameObject.FindWithTag("Player");
 
-        combatUpgrades.onClick.AddListener(combat);
-        movementUpgrades.onClick.AddListener(movement);
-        passiveUpgrades.onClick.AddListener(passive);
-    }
+    //    combatUpgrades.onClick.AddListener(combat);
+    //    movementUpgrades.onClick.AddListener(movement);
+    //    passiveUpgrades.onClick.AddListener(passive);
+    //}
 
-    void combat()
-    {
-        Debug.Log("Button Clicked via Code!");
-        PlayerController.changeAttack(1.5);
+    //void combat()
+    //{
+    //    Debug.Log("Button Clicked via Code!");
+    //    PlayerController.changeAttack(1.5);
 
 
-    }
+    //}
 
-    void movement()
-    {
-        Debug.Log("Button Clicked via Code!");
-        PlayerController.changeJump(2);
+    //void movement()
+    //{
+    //    Debug.Log("Button Clicked via Code!");
+    //    PlayerController.changeJump(2);
 
-    }
+    //}
 
-    void passive()
-    {
-        Debug.Log("Button Clicked via Code!");
+    //void passive()
+    //{
+    //    Debug.Log("Button Clicked via Code!");
     
-    }
+    //}
 
 
 
