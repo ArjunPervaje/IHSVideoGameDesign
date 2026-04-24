@@ -5,6 +5,7 @@ public class WeaponHitbox : MonoBehaviour
     public int damage = 10;
     private float knockback = 3f;
     public bool isPlayer;
+    //public bool isDownAttack;
     public GameObject owner;
     private Vector3 hitboxRelative = new Vector3(0.6f, 0 ,0);
 
