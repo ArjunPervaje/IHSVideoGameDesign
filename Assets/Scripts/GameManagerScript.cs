@@ -12,6 +12,8 @@ public class GameManagerScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        player = GameObject.FindWithTag("Player");
+
         this.DebugPanelOpen = false;
         this.stage = 1;
     }
@@ -55,6 +57,11 @@ public class GameManagerScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             stage--;
+        }
+
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            player.GetComponent<HealthControls>().setPlayerHealthPercentage(1);
         }
 
         //if (Input.GetKeyDown(KeyCode.P))

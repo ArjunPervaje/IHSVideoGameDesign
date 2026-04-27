@@ -16,7 +16,7 @@ public class HealthControls : MonoBehaviour
     void Start()
     {
         this.gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManagerScript>();
-        maxHealth = maxHealth += 10 * stage;
+        maxHealth = maxHealth += 10 * this.gameManager.getStage();
         currentHealth = maxHealth;
         canTakeDamage = true;
     }
@@ -68,6 +68,11 @@ public class HealthControls : MonoBehaviour
     public float getCurrentHealth()
     {
         return currentHealth;
+    }
+
+    public void setPlayerHealthPercentage(float desiredPercent)
+    {
+        currentHealth = desiredPercent * maxHealth;
     }
 
     //void UpdateHealthBar()

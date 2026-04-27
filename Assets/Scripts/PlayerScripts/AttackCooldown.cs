@@ -12,6 +12,7 @@ public class AttackCooldown : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        player = GameObject.FindWithTag("Player");
         playerController = player.GetComponent<PlayerController>();
     }
 
