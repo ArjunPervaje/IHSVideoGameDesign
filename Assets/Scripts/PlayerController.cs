@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
 
     private float timeSinceLastAttack;
     private float attackCooldownPercentage;
+
     void Start()
     {
         this.playerRb = GetComponent<Rigidbody>();
