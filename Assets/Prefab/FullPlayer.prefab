@@ -170,6 +170,7 @@ MonoBehaviour:
   redBar: {fileID: 6160881885780560494}
   greenBar: {fileID: 8334036688787855504}
   attatchedObject: {fileID: 5380614362972135720}
+  offset: {x: 0, y: 0, z: 0}
 --- !u!1 &5629948790812634003
 GameObject:
   m_ObjectHideFlags: 0
@@ -879,6 +880,10 @@ PrefabInstance:
     - target: {fileID: 305695129767002228, guid: afc0e32bcd8c8fb479e6361d8c852d11, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1165777266711756562, guid: afc0e32bcd8c8fb479e6361d8c852d11, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2079909173612765230, guid: afc0e32bcd8c8fb479e6361d8c852d11, type: 3}
       propertyPath: m_Name

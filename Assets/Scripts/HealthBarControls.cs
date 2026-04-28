@@ -6,7 +6,7 @@ public class HealthBarControls : MonoBehaviour
     public GameObject greenBar;
     public GameObject attatchedObject;
     private HealthControls healthController;
-    private Vector3 offset = new Vector3(0f, 2f, -6f);
+    public Vector3 offset;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
