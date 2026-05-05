@@ -21,6 +21,7 @@ public class PlayerHealthController : MonoBehaviour
         Vector3 dyingOffset = new Vector3((healthController.getHealthPercentage() - 1) * 100, 0, 0);
         greenHB.transform.localScale = new Vector3(healthController.getHealthPercentage() * 1f, 1f, 1f);
         greenHB.transform.position = dyingOffset + offset;
+        redHB.transform.position = offset;
         //if (healthController.getIsHealthDepleted())
         //{
         //    this.gameObject.SetActive(false);
