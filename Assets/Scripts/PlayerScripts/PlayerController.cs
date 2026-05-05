@@ -149,7 +149,7 @@ public class PlayerController : MonoBehaviour
     public void changeJumpForce(float amount)
     {
         Debug.Log("Jump Force Inreased!");
-        jumpForce *= amount;
+        jumpForce += amount;
     }
 
     public float getDamageMultiplier()
