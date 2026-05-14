@@ -44,6 +44,7 @@ public class HealthControls : MonoBehaviour
 
     public void Heal(float healAmount)
     {
+        Debug.Log("Heal");
         currentHealth += healAmount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
     }

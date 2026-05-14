@@ -136,17 +136,20 @@ public class PlayerController : MonoBehaviour
 
     public void changeAttack(float amount)
     {
+        Debug.Log("Attacked Increased!");
         multiplier *= amount;
     }
 
     public void changeJump(int amount)
     {
+        Debug.Log("Jump Instances Increased!");
         maxJumps += amount;
     }
 
     public void changeJumpForce(float amount)
     {
-        jumpForce *= amount;
+        Debug.Log("Jump Force Inreased!");
+        jumpForce += amount;
     }
 
     public float getDamageMultiplier()
