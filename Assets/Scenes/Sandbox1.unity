@@ -8202,6 +8202,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 6255698269837377351, guid: aa50f9b416d98ba4189af610155e8513, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8218,6 +8222,18 @@ PrefabInstance:
     - target: {fileID: 945830550139754027, guid: 393a005fea5fa4e478dcda170e0bc9f5, type: 3}
       propertyPath: m_Name
       value: BossEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 4782267455417659431, guid: 393a005fea5fa4e478dcda170e0bc9f5, type: 3}
+      propertyPath: projectile
+      value: 
+      objectReference: {fileID: 9104447404535953215, guid: b15b40c74df209641b49cce935fafb3e, type: 3}
+    - target: {fileID: 4782267455417659431, guid: 393a005fea5fa4e478dcda170e0bc9f5, type: 3}
+      propertyPath: isRangedType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4782267455417659431, guid: 393a005fea5fa4e478dcda170e0bc9f5, type: 3}
+      propertyPath: stopTrackingRange
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8554725990431845307, guid: 393a005fea5fa4e478dcda170e0bc9f5, type: 3}
       propertyPath: m_LocalPosition.x
