@@ -133,14 +133,14 @@ public class EnemyBehavior : MonoBehaviour
 
             GameObject spawnedProjectile = Instantiate(projectile, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
 
-            Debug.Log(velocity);
-            Debug.Log(Mathf.Cos(this.projectileAngle));
-            Debug.Log(Mathf.Sin(this.projectileAngle));
+            //Debug.Log(velocity);
+            //Debug.Log(Mathf.Cos(this.projectileAngle));
+            //Debug.Log(Mathf.Sin(this.projectileAngle));
 
-            // spawnedProjectile.GetComponent<Rigidbody>().linearVelocity = new Vector3(Mathf.Cos(this.projectileAngle) * velocity, Mathf.Sin(this.projectileAngle) * velocity, 0.0f);
+             spawnedProjectile.GetComponent<Rigidbody>().linearVelocity = new Vector3(Mathf.Cos(this.projectileAngle) * velocity, Mathf.Sin(this.projectileAngle) * -velocity, 0.0f);
 
             // spawnedProjectile.GetComponent<ProjectileScript>().SetVelocity1(Mathf.Cos(this.projectileAngle) * velocity, Mathf.Sin(this.projectileAngle) * velocity);
-            spawnedProjectile.GetComponent<ProjectileScript>().TestPrint(Mathf.Cos(this.projectileAngle) * velocity, 5f);
+            //spawnedProjectile.GetComponent<ProjectileScript>().TestPrint(Mathf.Cos(this.projectileAngle) * velocity, 5f);
 
             yield return new WaitForSeconds(0.1f);
         }

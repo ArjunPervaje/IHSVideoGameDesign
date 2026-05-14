@@ -19,7 +19,7 @@ public class DoorScript : MonoBehaviour
     {
         if (other.CompareTag("Player") && Input.GetKeyDown(KeyCode.W))
         {
-            Debug.Log(yay);
+            Debug.Log(yay);   
             SceneManager.LoadScene("Shop");
         }
     }

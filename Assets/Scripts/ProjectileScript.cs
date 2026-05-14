@@ -18,6 +18,8 @@ public class ProjectileScript : MonoBehaviour
     void Update()
     {
         rb.AddForce(gravityDirection, ForceMode.Acceleration);
+        Debug.Log("x: " + rb.linearVelocity.x);
+        Debug.Log("y: " + rb.linearVelocity.y);
     }
 
     private void OnTriggerEnter(Collider other)
