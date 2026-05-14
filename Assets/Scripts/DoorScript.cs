@@ -15,11 +15,11 @@ public class DoorScript : MonoBehaviour
         
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player") && Input.GetKeyDown(KeyCode.W))
+        if (other.CompareTag("Player") && Input.GetKey(KeyCode.W))
         {
-            Debug.Log(yay);   
+            Debug.Log("yay");
             SceneManager.LoadScene("Shop");
         }
     }
