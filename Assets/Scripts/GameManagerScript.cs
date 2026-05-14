@@ -9,10 +9,12 @@ public class GameManagerScript : MonoBehaviour
     private bool DebugPanelOpen;
     public GameObject DebugPanel;
     private int stage;
+    public Vector3 spawnPoint;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         player = GameObject.FindWithTag("Player");
+        player.transform.position = spawnPoint;
 
         this.DebugPanelOpen = false;
         this.stage = 1;
