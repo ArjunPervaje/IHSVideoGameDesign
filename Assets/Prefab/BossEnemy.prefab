@@ -280,8 +280,12 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2302180962992410513, guid: 179206fc2bfbf704e965973adb2acbea, type: 3}
+      propertyPath: inaccuracyRange
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2302180962992410513, guid: 179206fc2bfbf704e965973adb2acbea, type: 3}
       propertyPath: stopTrackingRange
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3172073341079620479, guid: 179206fc2bfbf704e965973adb2acbea, type: 3}
       propertyPath: maxHealth
