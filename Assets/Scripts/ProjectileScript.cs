@@ -6,6 +6,7 @@ public class ProjectileScript : MonoBehaviour
     private Vector3 gravityDirection;
     private float gravityValue = -9.81f;
     private GameObject owner;
+    private float timer = 0.0f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -18,6 +19,15 @@ public class ProjectileScript : MonoBehaviour
     void Update()
     {
         rb.AddForce(gravityDirection, ForceMode.Acceleration);
+        //Debug.Log("x: " + rb.linearVelocity.x);
+        //Debug.Log("y: " + rb.linearVelocity.y);
+
+        timer += Time.deltaTime;
+
+        if (timer >= 5.0f)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -30,17 +40,19 @@ public class ProjectileScript : MonoBehaviour
             {
                 playerHealth.TakeDamage(owner.GetComponent<EnemyBehavior>().GetProjectileDamage());
             }
+
+            Destroy(gameObject);
         }
     }
 
-    public void SetVelocity1(float x, float y)
-    {
-        rb.linearVelocity = new Vector3(0.5f, 0.5f, 0.0f);
-    }
+    //public void SetVelocity1(float x, float y)
+    //{
+    //    rb.linearVelocity = new Vector3(0.5f, 0.5f, 0.0f);
+    //}
 
-    public void TestPrint(float x, float y)
-    {
-        Debug.Log("Test print: " + x + " " + y);
-        rb.linearVelocity = new Vector3(x, y, 0.0f);
-    }
+    //public void TestPrint(float x, float y)
+    //{
+    //    Debug.Log("Test print: " + x + " " + y);
+    //    rb.linearVelocity = new Vector3(x, y, 0.0f);
+    //}
 }

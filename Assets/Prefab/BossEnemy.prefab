@@ -271,6 +271,22 @@ PrefabInstance:
       propertyPath: parent
       value: 
       objectReference: {fileID: 945830550139754027}
+    - target: {fileID: 2302180962992410513, guid: 179206fc2bfbf704e965973adb2acbea, type: 3}
+      propertyPath: projectile
+      value: 
+      objectReference: {fileID: 9104447404535953215, guid: b15b40c74df209641b49cce935fafb3e, type: 3}
+    - target: {fileID: 2302180962992410513, guid: 179206fc2bfbf704e965973adb2acbea, type: 3}
+      propertyPath: isRangedType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2302180962992410513, guid: 179206fc2bfbf704e965973adb2acbea, type: 3}
+      propertyPath: inaccuracyRange
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2302180962992410513, guid: 179206fc2bfbf704e965973adb2acbea, type: 3}
+      propertyPath: stopTrackingRange
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3172073341079620479, guid: 179206fc2bfbf704e965973adb2acbea, type: 3}
       propertyPath: maxHealth
       value: 250

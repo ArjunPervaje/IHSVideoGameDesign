@@ -31,6 +31,7 @@ public class EnemyBehavior : MonoBehaviour
     public float rangedAttackCooldown = 5f;
     public float projectileBaseDamage = 10;
     private float projectileDamage;
+    public float inaccuracyRange;
 
     void Start()
     {
@@ -118,7 +119,7 @@ public class EnemyBehavior : MonoBehaviour
         attackReady = false;
         for (int i = 0; i < projectileCount; i++)
         {
-            float targetX = player.transform.position.x + Random.Range(-1.0f, 1.0f);
+            float targetX = player.transform.position.x + Random.Range(-this.inaccuracyRange, this.inaccuracyRange);
             float targetY = player.transform.position.y;
 
             float initialX = transform.position.x;
@@ -126,21 +127,23 @@ public class EnemyBehavior : MonoBehaviour
 
             float gravity = -9.81f;
 
+            //float velocity = Mathf.Sqrt(
+            //                (-gravity * targetX * targetX) / 
+            //                (Mathf.Cos(DegreesToRadians(this.projectileAngle)) * Mathf.Cos(DegreesToRadians(this.projectileAngle)) * (initialY - targetY - (Mathf.Tan(DegreesToRadians(this.projectileAngle)) * targetX)))
+            //                );
             float velocity = Mathf.Sqrt(
-                            (-gravity * targetX * targetX) / 
-                            (Mathf.Cos(this.projectileAngle) * Mathf.Cos(this.projectileAngle) * (initialY - targetY - (Mathf.Tan(this.projectileAngle) * targetX)))
-                            );
+                             (-gravity * (targetX - initialX)) / 
+                             (Mathf.Sin(2 * DegreesToRadians(this.projectileAngle)))
+                             ) * 1.9f;
 
             GameObject spawnedProjectile = Instantiate(projectile, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
 
-            Debug.Log(velocity);
-            Debug.Log(Mathf.Cos(this.projectileAngle));
-            Debug.Log(Mathf.Sin(this.projectileAngle));
+            //Debug.Log("vel: " + velocity);
 
-            // spawnedProjectile.GetComponent<Rigidbody>().linearVelocity = new Vector3(Mathf.Cos(this.projectileAngle) * velocity, Mathf.Sin(this.projectileAngle) * velocity, 0.0f);
+            //Debug.Log("x vel: " + Mathf.Cos(DegreesToRadians(this.projectileAngle)) * velocity);
+            //Debug.Log("y vel: " + Mathf.Sin(DegreesToRadians(this.projectileAngle)) * velocity);
 
-            // spawnedProjectile.GetComponent<ProjectileScript>().SetVelocity1(Mathf.Cos(this.projectileAngle) * velocity, Mathf.Sin(this.projectileAngle) * velocity);
-            spawnedProjectile.GetComponent<ProjectileScript>().TestPrint(Mathf.Cos(this.projectileAngle) * velocity, 5f);
+            spawnedProjectile.GetComponent<Rigidbody>().linearVelocity = new Vector3(Mathf.Cos(DegreesToRadians(this.projectileAngle)) * velocity, Mathf.Sin(DegreesToRadians(this.projectileAngle)) * velocity, 0.0f);
 
             yield return new WaitForSeconds(0.1f);
         }
@@ -151,5 +154,11 @@ public class EnemyBehavior : MonoBehaviour
     public float GetProjectileDamage()
     {
         return this.projectileDamage;
+    }
+
+    private float DegreesToRadians(float degrees)
+    {
+        //Debug.Log(degrees * 3.14f / 180.0f);
+        return degrees * 3.14f / 180.0f;
     }
 }
