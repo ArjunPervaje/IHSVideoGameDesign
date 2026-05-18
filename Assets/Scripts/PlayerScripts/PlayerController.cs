@@ -100,13 +100,13 @@ public class PlayerController : MonoBehaviour
         //Debug.Log(attackCooldownPercentage);
     }
 
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            currentJumpsAvailable = maxJumps;
-        }
-    }
+    //void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Ground"))
+    //    {
+    //        currentJumpsAvailable = maxJumps;
+    //    }
+    //}
 
     IEnumerator DoSideAttack()
     {
