@@ -96,4 +96,10 @@ public class GameManagerScript : MonoBehaviour
     {
         return stage;
     }
+
+    public void leaveShop()
+    {
+        Debug.Log("left shop");
+        SceneManager.LoadScene("Sandbox2");
+    }
 }
