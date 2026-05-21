@@ -23,6 +23,7 @@ public class GameManagerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        player = GameObject.FindWithTag("Player");
         if (Input.GetKeyDown(KeyCode.R))
         {
             Debug.Log("Restarted Scene");
@@ -74,6 +75,21 @@ public class GameManagerScript : MonoBehaviour
         //    player.transform.position = mousePos;
         //}
 
+    }
+
+    public void AttackUpgrade(float amount)
+    {
+        player.GetComponent<PlayerController>().changeAttack(amount);
+    }
+
+    public void JumpForceUpgrade(float amount)
+    {
+        player.GetComponent<PlayerController>().changeJumpForce(amount);
+    }
+
+    public void HealUpgrade(float amount)
+    {
+        player.GetComponent<HealthControls>().Heal(amount);
     }
 
     public int getStage()
