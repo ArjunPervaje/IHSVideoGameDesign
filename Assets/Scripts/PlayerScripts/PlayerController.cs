@@ -7,12 +7,12 @@ public class PlayerController : MonoBehaviour
     public float speed = 10.0f;
     private float horizontalInput = 0;
     public int maxJumps = 1;
-    public float jumpForce = 300.0f;
+    public float jumpForce;
     private Rigidbody playerRb;
     private int currentJumpsAvailable;
     public float gravityValue = -9.81f;
     private Vector3 gravityDirection;
-    public float gravityMultiplier = 0.5f;
+    public float gravityMultiplier;
     private HealthControls healthController;
     private bool isDead;
     public GameObject footHitbox;
@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     public GameObject downWeaponHitbox;
     private bool canAttack = true;
 
-    public float multiplier = 1.0f;
+    public float multiplier;
 
     private bool isFacingRight;
 
