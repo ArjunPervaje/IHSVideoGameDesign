@@ -163,4 +163,14 @@ public class PlayerController : MonoBehaviour
         return attackCooldownPercentage;
     }
 
+    public int getCurrentJumpsAvailable()
+    {
+        return currentJumpsAvailable;
+    }
+
+    public bool getPlayerTouchingGround()
+    {
+        return footHitbox.GetComponent<FootHitboxScript>().isTouchingGround();
+    }
+
 }

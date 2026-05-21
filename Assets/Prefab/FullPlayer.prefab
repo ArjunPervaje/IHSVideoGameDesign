@@ -909,6 +909,14 @@ PrefabInstance:
       propertyPath: IVFrameTime
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6357799760087922413, guid: afc0e32bcd8c8fb479e6361d8c852d11, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8016391662928443627, guid: afc0e32bcd8c8fb479e6361d8c852d11, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.015
+      objectReference: {fileID: 0}
     - target: {fileID: 8567212375676402633, guid: afc0e32bcd8c8fb479e6361d8c852d11, type: 3}
       propertyPath: m_Name
       value: Player
