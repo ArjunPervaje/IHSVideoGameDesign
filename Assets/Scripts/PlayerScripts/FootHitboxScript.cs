@@ -10,18 +10,21 @@ public class FootHitboxScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-
+        Debug.Log(touchingGround);
     }
 
-    void OnCollisionStay(Collision collision)
+    void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
             touchingGround = true;
         }
-        else
+    }
+    void OnTriggerExit(Collider collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
         {
             touchingGround = false;
         }
