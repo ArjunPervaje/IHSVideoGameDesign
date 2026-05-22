@@ -271,6 +271,10 @@ PrefabInstance:
       propertyPath: parent
       value: 
       objectReference: {fileID: 6255698269837377351}
+    - target: {fileID: 2302180962992410513, guid: 179206fc2bfbf704e965973adb2acbea, type: 3}
+      propertyPath: trackingRange
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8252615294911552505, guid: 179206fc2bfbf704e965973adb2acbea, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
