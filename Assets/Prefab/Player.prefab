@@ -351,9 +351,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   maxJumps: 2
-  jumpForce: 20
+  jumpForce: 15
   gravityValue: -9.81
-  gravityMultiplier: 0.55
+  gravityMultiplier: 1.5
   footHitbox: {fileID: 7220460288346036687}
   attackCooldown: 0.25
   sideWeaponHitbox: {fileID: 0}

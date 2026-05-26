@@ -891,7 +891,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2516064143737904541, guid: afc0e32bcd8c8fb479e6361d8c852d11, type: 3}
       propertyPath: gravityValue
-      value: -12
+      value: -9.81
       objectReference: {fileID: 0}
     - target: {fileID: 2516064143737904541, guid: afc0e32bcd8c8fb479e6361d8c852d11, type: 3}
       propertyPath: upWeaponHitbox
