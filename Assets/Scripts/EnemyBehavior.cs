@@ -56,9 +56,9 @@ public class EnemyBehavior : MonoBehaviour
 
         if (this.isRangedType)
         {
-            bool withinRange = Mathf.Sqrt(Mathf.Abs(transform.position.x - player.transform.position.x) ^ 2 + Mathf.Abs(transform.position.y - player.transform.position.y) ^ 2) <= this.stopTrackingRange;
-            this.isTrackingPlayer = Mathf.Sqrt(Mathf.Abs(transform.position.x - player.transform.position.x) ^ 2 + Mathf.Abs(transform.position.y - player.transform.position.y) ^ 2) < this.trackingRange
-                                 && this.stopTrackingRange < Mathf.Sqrt(Mathf.Abs(transform.position.x - player.transform.position.x) ^ 2 + Mathf.Abs(transform.position.y - player.transform.position.y) ^ 2);
+            bool withinRange = Mathf.Sqrt(Mathf.Abs(transform.position.x - player.transform.position.x) * Mathf.Abs(transform.position.x - player.transform.position.x) + Mathf.Abs(transform.position.y - player.transform.position.y) * Mathf.Abs(transform.position.y - player.transform.position.y)) <= this.stopTrackingRange;
+            this.isTrackingPlayer = Mathf.Sqrt(Mathf.Abs(transform.position.x - player.transform.position.x) * Mathf.Abs(transform.position.x - player.transform.position.x) + Mathf.Abs(transform.position.y - player.transform.position.y) * Mathf.Abs(transform.position.y - player.transform.position.y)) < this.trackingRange
+                                 && this.stopTrackingRange < Mathf.Sqrt(Mathf.Abs(transform.position.x - player.transform.position.x) * Mathf.Abs(transform.position.x - player.transform.position.x) + Mathf.Abs(transform.position.y - player.transform.position.y) * Mathf.Abs(transform.position.y - player.transform.position.y));
             projectileCount = (stage / 3) + 1;
             if (withinRange && attackReady)
             {
