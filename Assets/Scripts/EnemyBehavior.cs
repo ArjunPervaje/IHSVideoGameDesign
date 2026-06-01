@@ -33,6 +33,8 @@ public class EnemyBehavior : MonoBehaviour
     private float projectileDamage;
     public float inaccuracyRange;
 
+    public bool isBoss;
+
     void Start()
     {
         this.player = GameObject.FindWithTag("Player");
