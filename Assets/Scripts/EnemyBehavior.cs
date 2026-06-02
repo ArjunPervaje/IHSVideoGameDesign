@@ -26,6 +26,7 @@ public class EnemyBehavior : MonoBehaviour
     private bool attackReady;
 
     public GameObject projectile;
+    public GameObject door;
     private int projectileCount = 0;
     private float projectileAngle = 75.0f;
     public float rangedAttackCooldown = 5f;
@@ -82,11 +83,15 @@ public class EnemyBehavior : MonoBehaviour
             transform.Translate(Vector3.right * -speed * Time.deltaTime);
         }
 
-        if (this.health.getIsHealthDepleted())
+        if (isBoss && this.health.getIsHealthDepleted())
+        {
+            Destroy(parent);
+            door.SetActive(true);
+        }
+        else if (this.health.getIsHealthDepleted())
         {
             Destroy(parent);
         }
-
     }
 
     private void OnTriggerStay(Collider other)
