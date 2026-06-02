@@ -10,6 +10,9 @@ public class GameManagerScript : MonoBehaviour
     public GameObject DebugPanel;
     private int stage;
     public Vector3 spawnPoint;
+    public int flesh;
+    public int upgradeCost;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
