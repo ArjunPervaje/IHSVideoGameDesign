@@ -4,18 +4,21 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 10.0f;
+    public float speed = 10f;
     private float horizontalInput = 0;
     public int maxJumps = 1;
     public float jumpForce;
     private Rigidbody playerRb;
     private int currentJumpsAvailable;
-    public float gravityValue = -9.81f;
+    // public float gravityValue = -9.81f;
     private Vector3 gravityDirection;
     public float gravityMultiplier;
     private HealthControls healthController;
     private bool isDead;
     public GameObject footHitbox;
+    
+    private float xVel = 0;
+    private float yVel = 0;
 
     public float attackCooldown = 0.25f;
     public GameObject sideWeaponHitbox;
@@ -48,19 +51,28 @@ public class PlayerController : MonoBehaviour
         }
         if (!this.isDead)
         {
-            this.gravityDirection = new Vector3(0, this.gravityValue, 0);
+            Vector3 movement = new Vector3(0, 0, 0);
+            if (footHitbox.GetComponent<FootHitboxScript>().isTouchingGround())
+            {
+                this.currentJumpsAvailable = this.maxJumps;
+                yVel = 0f;
+            }
+            else
+            {
+                yVel -= gravityMultiplier;
+            }
             this.horizontalInput = Input.GetAxis("Horizontal");
-            Vector3 movement = new Vector3(Mathf.Abs(horizontalInput), 0, 0);
-            transform.Translate(movement * speed * Time.deltaTime);
+            xVel = horizontalInput * speed;
+            // transform.Translate(movement * speed * Time.deltaTime);
             if (Input.GetKeyDown(KeyCode.Space) && this.currentJumpsAvailable > 0)
             {
                 this.playerRb.linearVelocity = new Vector3(playerRb.linearVelocity.x, 0.0f, playerRb.linearVelocity.z);
                 currentJumpsAvailable--;
-                this.playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                // this.playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                yVel = jumpForce;
             }
             
-            this.playerRb.AddForce(gravityDirection * gravityMultiplier, ForceMode.Acceleration);
-            
+            // this.playerRb.AddForce(gravityDirection * gravityMultiplier, ForceMode.Acceleration);
             if (this.horizontalInput > 0)
             {
                 transform.eulerAngles = new Vector3(0, 0, 0);
@@ -70,10 +82,7 @@ public class PlayerController : MonoBehaviour
                 transform.eulerAngles = new Vector3(0, 180, 0);
             }
 
-            if (footHitbox.GetComponent<FootHitboxScript>().isTouchingGround())
-            {
-                this.currentJumpsAvailable = this.maxJumps;
-            }
+            this.playerRb.linearVelocity = new Vector3(xVel, yVel, 0);
         }
 
         //attack
@@ -98,6 +107,8 @@ public class PlayerController : MonoBehaviour
         attackCooldownPercentage = timeSinceLastAttack / attackCooldown;
         attackCooldownPercentage = Mathf.Clamp(attackCooldownPercentage, 0f, 1f);
         //Debug.Log(attackCooldownPercentage);
+        
+        
     }
 
     //void OnCollisionEnter(Collision collision)
@@ -172,5 +183,5 @@ public class PlayerController : MonoBehaviour
     {
         return footHitbox.GetComponent<FootHitboxScript>().isTouchingGround();
     }
-
+    
 }

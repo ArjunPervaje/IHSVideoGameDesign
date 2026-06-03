@@ -15,7 +15,7 @@ public class FootHitboxScript : MonoBehaviour
         Debug.Log(touchingGround);
     }
 
-    void OnTriggerEnter(Collider collision)
+    void OnTriggerStay(Collider collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
