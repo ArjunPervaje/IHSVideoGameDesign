@@ -16,7 +16,7 @@ public class HealthControls : MonoBehaviour
     void Start()
     {
         this.gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManagerScript>();
-        maxHealth = maxHealth += 10 * this.gameManager.getStage();
+        maxHealth = maxHealth += 10 * this.gameManager.GetStage();
         currentHealth = maxHealth;
         canTakeDamage = true;
     }

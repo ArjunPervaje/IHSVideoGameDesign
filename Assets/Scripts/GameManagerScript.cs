@@ -103,12 +103,12 @@ public class GameManagerScript : MonoBehaviour
         player.GetComponent<HealthControls>().Heal(amount);
     }
 
-    public int getStage()
+    public int GetStage()
     {
         return stage;
     }
 
-    public void leaveShop()
+    public void LeaveShop()
     {
         Debug.Log("left shop");
         SceneManager.LoadScene("Sandbox2");
@@ -116,7 +116,12 @@ public class GameManagerScript : MonoBehaviour
 
     public void AddCurrency(int amount)
     {
-        AddCurrency += amount;
-        currencyText.text = "$" + AddCurrency().ToString();
+        currency += amount;
+        currencyText.text = "$" + currency;
+    }
+
+    public int GetCurrency()
+    {
+        return currency;
     }
 }

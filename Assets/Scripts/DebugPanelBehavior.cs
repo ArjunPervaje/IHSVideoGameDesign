@@ -24,7 +24,7 @@ public class DebugPanelBehavior : MonoBehaviour
         DebugPanel.text = "Player Melee Attack CD%: " + playerInfo.getAttackCooldownPercentage() +
                         "\nPlayer Health%: " + playerHealthInfo.getHealthPercentage() * 100 +
                         "\nPlayer Health: " + playerHealthInfo.getCurrentHealth() +
-                        "\nStage: " + gameManager.getStage() + 
+                        "\nStage: " + gameManager.GetStage() + 
                         "\nIs Player Touching Ground: " + playerInfo.getPlayerTouchingGround() +
                         "\nPlayer Current Jumps: " + playerInfo.getCurrentJumpsAvailable();
     }

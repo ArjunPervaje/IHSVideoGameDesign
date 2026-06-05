@@ -52,7 +52,7 @@ public class EnemyBehavior : MonoBehaviour
         this.gravityDirection = new Vector3(0, this.gravityValue, 0);
         this.rb.AddForce(gravityDirection * gravityMultiplier, ForceMode.Acceleration);
 
-        this.stage = gameManager.getStage();
+        this.stage = gameManager.GetStage();
 
         this.damage = this.baseDamage * (1 + (stage / 10));
         this.projectileDamage = this.projectileBaseDamage * (1 + (stage / 10));
