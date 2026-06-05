@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,6 +14,10 @@ public class GameManagerScript : MonoBehaviour
     public int flesh;
     public int upgradeCost;
 
+    public int currency = 0;
+    public TextMeshProUGUI currencyText;
+    public GameManagerScript Instance;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -21,6 +26,9 @@ public class GameManagerScript : MonoBehaviour
 
         this.DebugPanelOpen = false;
         this.stage = 1;
+
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
     }
 
     // Update is called once per frame
@@ -104,5 +112,11 @@ public class GameManagerScript : MonoBehaviour
     {
         Debug.Log("left shop");
         SceneManager.LoadScene("Sandbox2");
+    }
+
+    public void AddCurrency(int amount)
+    {
+        AddCurrency += amount;
+        currencyText.text = "$" + AddCurrency().ToString();
     }
 }
