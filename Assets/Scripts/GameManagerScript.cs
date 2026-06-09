@@ -11,7 +11,6 @@ public class GameManagerScript : MonoBehaviour
     public GameObject DebugPanel;
     private int stage;
     public Vector3 spawnPoint;
-    public int flesh;
     public int upgradeCost;
 
     public int currency = 0;
@@ -108,12 +107,6 @@ public class GameManagerScript : MonoBehaviour
         return stage;
     }
 
-    public void LeaveShop()
-    {
-        Debug.Log("left shop");
-        SceneManager.LoadScene("Sandbox2");
-    }
-
     public void AddCurrency(int amount)
     {
         currency += amount;
@@ -123,5 +116,10 @@ public class GameManagerScript : MonoBehaviour
     public int GetCurrency()
     {
         return currency;
+    }
+
+    public void SetStage(int newStage)
+    {
+        stage = newStage;
     }
 }
