@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     
     private float xVel = 0;
     private float yVel = 0;
+    private bool jumpRequested = false;
 
     public float attackCooldown = 0.25f;
     public GameObject sideWeaponHitbox;
@@ -48,41 +49,31 @@ public class PlayerController : MonoBehaviour
         if (this.isDead)
         {
             this.gameObject.SetActive(false);
+            return;
         }
-        if (!this.isDead)
-        {
-            Vector3 movement = new Vector3(0, 0, 0);
-            if (footHitbox.GetComponent<FootHitboxScript>().isTouchingGround())
-            {
-                this.currentJumpsAvailable = this.maxJumps;
-                yVel = 0f;
-            }
-            else
-            {
-                yVel -= gravityMultiplier;
-            }
-            this.horizontalInput = Input.GetAxis("Horizontal");
-            xVel = horizontalInput * speed;
-            // transform.Translate(movement * speed * Time.deltaTime);
-            if (Input.GetKeyDown(KeyCode.Space) && this.currentJumpsAvailable > 0)
-            {
-                this.playerRb.linearVelocity = new Vector3(playerRb.linearVelocity.x, 0.0f, playerRb.linearVelocity.z);
-                currentJumpsAvailable--;
-                // this.playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-                yVel = jumpForce;
-            }
-            
-            // this.playerRb.AddForce(gravityDirection * gravityMultiplier, ForceMode.Acceleration);
-            if (this.horizontalInput > 0)
-            {
-                transform.eulerAngles = new Vector3(0, 0, 0);
-            }
-            else if (this.horizontalInput < 0)
-            {
-                transform.eulerAngles = new Vector3(0, 180, 0);
-            }
 
-            this.playerRb.linearVelocity = new Vector3(xVel, yVel, 0);
+        // Read inputs
+        this.horizontalInput = Input.GetAxis("Horizontal");
+        xVel = horizontalInput * speed;
+
+        if (footHitbox.GetComponent<FootHitboxScript>().isTouchingGround())
+        {
+            this.currentJumpsAvailable = this.maxJumps;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) && this.currentJumpsAvailable > 0)
+        {
+            currentJumpsAvailable--;
+            jumpRequested = true;
+        }
+
+        if (this.horizontalInput > 0)
+        {
+            transform.eulerAngles = new Vector3(0, 0, 0);
+        }
+        else if (this.horizontalInput < 0)
+        {
+            transform.eulerAngles = new Vector3(0, 180, 0);
         }
 
         //attack
@@ -106,9 +97,32 @@ public class PlayerController : MonoBehaviour
         timeSinceLastAttack += Time.deltaTime;
         attackCooldownPercentage = timeSinceLastAttack / attackCooldown;
         attackCooldownPercentage = Mathf.Clamp(attackCooldownPercentage, 0f, 1f);
-        //Debug.Log(attackCooldownPercentage);
-        
-        
+    }
+
+    void FixedUpdate()
+    {
+        // Apply gravity in fixed timestep
+        if (!footHitbox.GetComponent<FootHitboxScript>().isTouchingGround())
+        {
+            yVel -= gravityMultiplier * Time.fixedDeltaTime;
+        }
+        else
+        {
+            if (!jumpRequested)
+                yVel = 0f;
+        }
+
+        // If a jump was requested this frame, apply it here and start a short grace period
+        if (jumpRequested)
+        {
+            var foot = footHitbox.GetComponent<FootHitboxScript>();
+            if (foot != null) foot.StartJumpGrace(0.12f); // tweak duration as needed
+            yVel = jumpForce;
+            jumpRequested = false;
+        }
+
+        // Apply velocity to the Rigidbody
+        this.playerRb.linearVelocity = new Vector3(xVel, yVel, 0);
     }
 
     //void OnCollisionEnter(Collision collision)

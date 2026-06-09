@@ -1,37 +1,58 @@
 using UnityEngine;
 
+using System.Collections.Generic;
+using UnityEngine;
+
 public class FootHitboxScript : MonoBehaviour
 {
-    private bool touchingGround;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    // Track distinct ground colliders so multiple adjacent cubes don't cause flicker
+    private HashSet<Collider> groundContacts = new HashSet<Collider>();
+    private float ignoreUntil = 0f; // used to ignore ground briefly after jumping
+
     void Start()
     {
-        
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    void OnTriggerEnter(Collider collision)
     {
-        Debug.Log(touchingGround);
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            groundContacts.Add(collision);
+        }
     }
 
     void OnTriggerStay(Collider collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            touchingGround = true;
+            groundContacts.Add(collision);
         }
     }
+
     void OnTriggerExit(Collider collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            touchingGround = false;
+            groundContacts.Remove(collision);
         }
     }
 
     public bool isTouchingGround()
     {
-        return touchingGround;
+        if (Time.time < ignoreUntil) return false;
+        return groundContacts.Count > 0;
+    }
+
+    // Start a short grace period after jumping so rapid transitions between adjacent ground colliders
+    // don't immediately re-ground the player.
+    public void StartJumpGrace(float duration)
+    {
+        ignoreUntil = Time.time + duration;
+    }
+
+    // Utility to manually clear contacts (not normally required)
+    public void ClearContacts()
+    {
+        groundContacts.Clear();
     }
 }
