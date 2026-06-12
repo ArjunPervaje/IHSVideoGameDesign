@@ -132,25 +132,58 @@ public class EnemyBehavior : MonoBehaviour
             float initialX = transform.position.x;
             float initialY = transform.position.y;
 
-            float gravity = -9.81f;
+            float targetXLocal = targetX;
+            float targetYLocal = targetY;
 
-            //float velocity = Mathf.Sqrt(
-            //                (-gravity * targetX * targetX) / 
-            //                (Mathf.Cos(DegreesToRadians(this.projectileAngle)) * Mathf.Cos(DegreesToRadians(this.projectileAngle)) * (initialY - targetY - (Mathf.Tan(DegreesToRadians(this.projectileAngle)) * targetX)))
-            //                );
-            float velocity = Mathf.Sqrt(
-                             (-gravity * (targetX - initialX)) / 
-                             (Mathf.Sin(2 * DegreesToRadians(this.projectileAngle)))
-                             ) * 1.9f;
+            float initialXLocal = initialX;
+            float initialYLocal = initialY;
 
-            GameObject spawnedProjectile = Instantiate(projectile, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+            float dxSigned = targetXLocal - initialXLocal;
+            float dy = targetYLocal - initialYLocal;
+            float dx = Mathf.Abs(dxSigned);
 
-            //Debug.Log("vel: " + velocity);
+            float g = Mathf.Abs(Physics.gravity.y);
 
-            //Debug.Log("x vel: " + Mathf.Cos(DegreesToRadians(this.projectileAngle)) * velocity);
-            //Debug.Log("y vel: " + Mathf.Sin(DegreesToRadians(this.projectileAngle)) * velocity);
+            float[] angleCandidates = new float[] { this.projectileAngle, 45f, 35f, 25f, 60f, 15f, 75f };
+            float chosenAngleRad = 0f;
+            float chosenVelocity = 0f;
+            const float EPS = 1e-4f;
 
-            spawnedProjectile.GetComponent<Rigidbody>().linearVelocity = new Vector3(Mathf.Cos(DegreesToRadians(this.projectileAngle)) * velocity, Mathf.Sin(DegreesToRadians(this.projectileAngle)) * velocity, 0.0f);
+            foreach (float angDeg in angleCandidates)
+            {
+                float aRad = DegreesToRadians(angDeg);
+                float cos = Mathf.Cos(aRad);
+                float tan = Mathf.Tan(aRad);
+                if (Mathf.Abs(cos) < EPS) continue;
+                float denom = (dx * tan - dy);
+                if (denom <= EPS) continue; 
+                float vSq = (g * dx * dx) / (2f * cos * cos * denom);
+                if (vSq <= 0f) continue;
+                chosenAngleRad = aRad;
+                chosenVelocity = Mathf.Sqrt(vSq);
+                break;
+            }
+
+            GameObject spawned = Instantiate(projectile, transform.position, Quaternion.identity);
+            Rigidbody prb = spawned.GetComponent<Rigidbody>();
+            if (prb != null)
+            {
+                prb.useGravity = true;
+                prb.linearDamping = 0f;
+
+                if (chosenVelocity > 0f)
+                {
+                    float vx = Mathf.Cos(chosenAngleRad) * chosenVelocity * Mathf.Sign(dxSigned == 0f ? 1f : dxSigned);
+                    float vy = Mathf.Sin(chosenAngleRad) * chosenVelocity;
+                    prb.linearVelocity = new Vector3(vx, vy, 0f);
+                }
+                else
+                {
+                    Vector3 dir = new Vector3(dxSigned, dy, 0f).normalized;
+                    float fallbackSpeed = Mathf.Max(10f, dx * 2f);
+                    prb.linearVelocity = dir * fallbackSpeed;
+                }
+            }
 
             yield return new WaitForSeconds(0.1f);
         }
@@ -165,7 +198,6 @@ public class EnemyBehavior : MonoBehaviour
 
     private float DegreesToRadians(float degrees)
     {
-        //Debug.Log(degrees * 3.14f / 180.0f);
-        return degrees * 3.14f / 180.0f;
+        return degrees * Mathf.Deg2Rad;
     }
 }

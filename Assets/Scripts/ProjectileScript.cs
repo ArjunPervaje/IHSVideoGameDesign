@@ -4,21 +4,26 @@ public class ProjectileScript : MonoBehaviour
 {
     private Rigidbody rb;
     private Vector3 gravityDirection;
-    private float gravityValue = -9.81f;
+    private float gravityValue = -15f;
     private GameObject owner;
     private float timer = 0.0f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        gravityDirection = new Vector3(0, gravityValue, 0);
+        // Use Physics.gravity so EnemyBehavior's ballistic calculation and projectile gravity match.
+        gravityDirection = Physics.gravity;
         owner = GameObject.FindWithTag("Enemy");
     }
 
     // Update is called once per frame
     void Update()
     {
-        rb.AddForce(gravityDirection, ForceMode.Acceleration);
+        // Only apply manual gravity if the Rigidbody is not already using built-in gravity.
+        if (rb != null && !rb.useGravity)
+        {
+            rb.AddForce(gravityDirection, ForceMode.Acceleration);
+        }
         //Debug.Log("x: " + rb.linearVelocity.x);
         //Debug.Log("y: " + rb.linearVelocity.y);
 
