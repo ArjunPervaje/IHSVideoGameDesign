@@ -890,6 +890,10 @@ PrefabInstance:
       value: SideWeaponHitBox
       objectReference: {fileID: 0}
     - target: {fileID: 2516064143737904541, guid: afc0e32bcd8c8fb479e6361d8c852d11, type: 3}
+      propertyPath: jumpForce
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2516064143737904541, guid: afc0e32bcd8c8fb479e6361d8c852d11, type: 3}
       propertyPath: gravityValue
       value: -9.81
       objectReference: {fileID: 0}
@@ -905,9 +909,21 @@ PrefabInstance:
       propertyPath: sideWeaponHitbox
       value: 
       objectReference: {fileID: 2347009126130252495}
+    - target: {fileID: 2516064143737904541, guid: afc0e32bcd8c8fb479e6361d8c852d11, type: 3}
+      propertyPath: gravityMultiplier
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 3764629758938925435, guid: afc0e32bcd8c8fb479e6361d8c852d11, type: 3}
       propertyPath: IVFrameTime
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357799760087922413, guid: afc0e32bcd8c8fb479e6361d8c852d11, type: 3}
+      propertyPath: m_Size.y
+      value: 0.09886855
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357799760087922413, guid: afc0e32bcd8c8fb479e6361d8c852d11, type: 3}
+      propertyPath: m_Center.y
+      value: -0.9444343
       objectReference: {fileID: 0}
     - target: {fileID: 6357799760087922413, guid: afc0e32bcd8c8fb479e6361d8c852d11, type: 3}
       propertyPath: m_IsTrigger
