@@ -3,26 +3,30 @@ using UnityEngine.SceneManagement;
 
 public class StageManagerScript : MonoBehaviour
 {
+    public static StageManagerScript Instance;
     public int stage = 1;
-    public GameObject gameManager;
+    public int currency = 0;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
-        DontDestroyOnLoad(gameObject);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        gameManager = GameObject.FindWithTag("GameManager");
-        gameManager.GetComponent<GameManagerScript>().SetStage(stage);
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else Destroy(gameObject);
     }
 
     public void LeaveShop()
     {
         Debug.Log("left shop");
-        SceneManager.LoadScene("Sandbox2");
         stage++;
+        SceneManager.LoadScene("Sandbox2");
     }
+
+    public void SaveCurrency(int amount)
+    {
+        currency = amount;
+    }
+
 }

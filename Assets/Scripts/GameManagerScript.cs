@@ -15,19 +15,21 @@ public class GameManagerScript : MonoBehaviour
 
     public int currency = 0;
     public TextMeshProUGUI currencyText;
-    public GameManagerScript Instance;
+    public static GameManagerScript Instance;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         player = GameObject.FindWithTag("Player");
         player.transform.position = spawnPoint;
-
         this.DebugPanelOpen = false;
-        this.stage = 1;
 
-        if (Instance == null) Instance = this;
-        else Destroy(gameObject);
+        if (StageManagerScript.Instance != null)
+        {
+            stage = StageManagerScript.Instance.stage; // pull stage
+            currency = StageManagerScript.Instance.currency; // pull currency
+            currencyText.text = "$" + currency;
+        }
     }
 
     // Update is called once per frame
@@ -101,12 +103,6 @@ public class GameManagerScript : MonoBehaviour
     {
         player.GetComponent<HealthControls>().Heal(amount);
     }
-
-    public int GetStage()
-    {
-        return stage;
-    }
-
     public void AddCurrency(int amount)
     {
         currency += amount;
@@ -118,8 +114,17 @@ public class GameManagerScript : MonoBehaviour
         return currency;
     }
 
+    public int GetStage()
+    {
+        if (StageManagerScript.Instance != null)
+            return StageManagerScript.Instance.stage;
+        return stage; // fallback
+    }
+
     public void SetStage(int newStage)
     {
         stage = newStage;
+        if (StageManagerScript.Instance != null)
+            StageManagerScript.Instance.stage = newStage;
     }
 }

@@ -456,8 +456,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 948351007}
-        m_TargetAssemblyTypeName: GameManagerScript, Assembly-CSharp
+      - m_Target: {fileID: 622213564663370538, guid: f712c5a3af0d46a43ae10196010c5bbd, type: 3}
+        m_TargetAssemblyTypeName: StageManagerScript, Assembly-CSharp
         m_MethodName: LeaveShop
         m_Mode: 1
         m_Arguments:
@@ -881,8 +881,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 948351007}
-        m_TargetAssemblyTypeName: GameManagerScript, Assembly-CSharp
+      - m_Target: {fileID: 622213564663370538, guid: f712c5a3af0d46a43ae10196010c5bbd, type: 3}
+        m_TargetAssemblyTypeName: StageManagerScript, Assembly-CSharp
         m_MethodName: LeaveShop
         m_Mode: 1
         m_Arguments:
@@ -1446,8 +1446,8 @@ MonoBehaviour:
           m_StringArgument: IncreaseAttack()
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 948351007}
-        m_TargetAssemblyTypeName: GameManagerScript, Assembly-CSharp
+      - m_Target: {fileID: 622213564663370538, guid: f712c5a3af0d46a43ae10196010c5bbd, type: 3}
+        m_TargetAssemblyTypeName: StageManagerScript, Assembly-CSharp
         m_MethodName: LeaveShop
         m_Mode: 1
         m_Arguments:
