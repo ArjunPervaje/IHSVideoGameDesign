@@ -12,6 +12,7 @@ public class GameManagerScript : MonoBehaviour
     private int stage;
     public Vector3 spawnPoint;
     public int upgradeCost;
+    public GameObject stageManager;
 
     public int currency = 0;
     public TextMeshProUGUI currencyText;
@@ -23,6 +24,7 @@ public class GameManagerScript : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         player.transform.position = spawnPoint;
         this.DebugPanelOpen = false;
+        stageManager = GameObject.FindWithTag("StageManager");
 
         if (StageManagerScript.Instance != null)
         {

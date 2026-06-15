@@ -40,6 +40,8 @@ public class FootHitboxScript : MonoBehaviour
     public bool isTouchingGround()
     {
         if (Time.time < ignoreUntil) return false;
+        // Remove any destroyed/null colliders left over after scene changes so Count is accurate
+        groundContacts.RemoveWhere(c => c == null);
         return groundContacts.Count > 0;
     }
 
@@ -55,4 +57,5 @@ public class FootHitboxScript : MonoBehaviour
     {
         groundContacts.Clear();
     }
+
 }
