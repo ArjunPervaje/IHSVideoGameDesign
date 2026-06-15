@@ -33,9 +33,11 @@ public class PlayerController : MonoBehaviour
 
     private float timeSinceLastAttack;
     private float attackCooldownPercentage;
+    private Animator anim;
 
     void Start()
     {
+        anim = GetComponentInChildren<Animator>();
         this.playerRb = GetComponent<Rigidbody>();
         this.currentJumpsAvailable = this.maxJumps;
         this.playerRb.useGravity = false;
@@ -55,6 +57,27 @@ public class PlayerController : MonoBehaviour
         // Read inputs
         this.horizontalInput = Input.GetAxis("Horizontal");
         xVel = horizontalInput * speed;
+
+        if (horizontalInput == 0 && footHitbox.GetComponent<FootHitboxScript>().isTouchingGround())
+        {
+            // play idle
+            // anim.SetBool("Idle", true);
+            anim.SetBool("isJumping", false);
+            anim.SetBool("isMoving", false);
+        }
+        else if (horizontalInput != 0 && footHitbox.GetComponent<FootHitboxScript>().isTouchingGround())
+        {
+            // play walk/run
+            anim.SetBool("isMoving", true);
+            anim.SetBool("isJumping", false);
+        }
+        else if (!footHitbox.GetComponent<FootHitboxScript>().isTouchingGround())
+        {
+            // play jump
+            anim.SetBool("isJumping", true);
+            anim.SetBool("isMoving", false);
+        }
+        
 
         if (footHitbox.GetComponent<FootHitboxScript>().isTouchingGround())
         {
@@ -81,9 +104,9 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.W))
             {
-                StartCoroutine(DoUpAttack());
+                StartCoroutine(DoSideAttack());
             }
-            else if (Input.GetKey(KeyCode.S))
+            else if (Input.GetKey(KeyCode.S) && !footHitbox.GetComponent<FootHitboxScript>().isTouchingGround())
             {
                 StartCoroutine(DoDownAttack());
             }
@@ -135,10 +158,12 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator DoSideAttack()
     {
+        anim.SetBool("isAttacking", true);
         canAttack = false;
         sideWeaponHitbox.gameObject.SetActive(true);
         yield return new WaitForSeconds(attackCooldown);
         canAttack = true;
+        anim.SetBool("isAttacking", false);
         sideWeaponHitbox.gameObject.SetActive(false);
     }
 
@@ -153,10 +178,12 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator DoDownAttack()
     {
+        anim.SetBool("isPlunging", true);
         canAttack = false;
         downWeaponHitbox.gameObject.SetActive(true);
         yield return new WaitForSeconds(attackCooldown);
         canAttack = true;
+        anim.SetBool("isPlunging", false);
         downWeaponHitbox.gameObject.SetActive(false);
     }
 

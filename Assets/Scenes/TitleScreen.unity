@@ -171,6 +171,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: FullPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 2257379448890130892, guid: 914d5c3b3a5e3ce4f8775f023c99d606, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3393970723933667157, guid: 914d5c3b3a5e3ce4f8775f023c99d606, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8277733575359618982, guid: 914d5c3b3a5e3ce4f8775f023c99d606, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
